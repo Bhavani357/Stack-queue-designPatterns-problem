@@ -1,5 +1,16 @@
-class Rectangle{
+class Shape{
+    calculateArea(){
+        return new Error("you should implement this method")
+    }
+    calculatePerimeter(){
+        return new Error("you should implement this method")
+    }
+}
+
+
+class Rectangle extends Shape{
     constructor(options){
+        super()
         this.length = options.length
         this.bredth = options.bredth
         this.params = {}
@@ -17,8 +28,9 @@ class Rectangle{
     
 }
 
-class Square{
+class Square extends Shape{
     constructor(options){
+        super()
         this.length = options.length
         this.params = {}
     }
@@ -36,7 +48,7 @@ class Square{
     }
 }
 
-class Shape{
+class ShapeFactory{
     createShapes(options){
         switch(options.type){
             case 'square':
@@ -47,4 +59,4 @@ class Shape{
     }
 }
 
-module.exports = Shape
+module.exports = ShapeFactory

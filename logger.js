@@ -6,8 +6,8 @@ class Logger{
         }
         return Logger.instance;
     }
-    logError(){
-        console.log("change the inputs and try again")
+    logError(message){
+        console.error(message)
     }
     logSuccess(message){
         console.log(message)
