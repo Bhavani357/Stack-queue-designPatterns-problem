@@ -7,22 +7,15 @@ class Stack{
         this.areaSum = 0
     }
     push(obj){
-        if(this.areaSum<200){
-            this.data.push(obj)
-            let area = obj.params.area
-            this.areaSum += area
-        }else{
-            logger.logSuccess("Your Stack's AreaSum is reaches the limit, so please pop")
-        }
-        
+        this.data.push(obj)
+        let area = obj.params.area
+        this.areaSum += area
     }
     pop(){
-        while(this.areaSum >=200){
-            let popEl = this.data.pop()
-            let area = popEl.params.area
-            this.areaSum -= area
-            return popEl
-        }
+        let popEl = this.data.pop()
+        let area = popEl.params.area
+        this.areaSum -= area
+        return popEl
     }
     getSum(){
         return this.areaSum

@@ -1,51 +1,39 @@
 const Shape = require('./shapes')
 const Queue = require('./queue')
 const Logger = require('./logger')
-
+const Stack = require('./stack')
 
 
 const shape = new Shape()
 const queue = new Queue()
 const logger = new Logger()
+const stack = new Stack()
 
-let objsArr = [
-    {'type':'rectangle','length':4,'bredth':9},
-    {'type':'square','length':8},
-    {'type':'rectangle','length':9,'bredth':22},
-    {'type':'square','length':41}
-]
-
-for(let i=0;i<objsArr.length;i++){
-    const obj = shape.createShapes(objsArr[i])
+function main(input){
+    const obj = shape.createShapes(input)
     obj.calculateArea()
     obj.calculatePerimeter()
     queue.enqueue(obj)
+    logger.logSuccess(queue)
+
+    if(queue.perimeterSum>=100){
+        while(queue.perimeterSum>=100){
+            let popEl = queue.dequeue()
+            stack.push(popEl)
+            logger.logSuccess("after pushing:")
+            logger.logSuccess(stack)
+        }
+    }
+    if(stack.areaSum >=200){
+        while(stack.areaSum >=200){
+            let popEl = stack.pop()
+            logger.logSuccess("after poped:")
+            logger.logSuccess(stack)
+        }
+    }
 }
+main({'type':'square','length':10})
+main({'type':'rectangle','length':12,'bredth':11})
+main({'type':'square','length':23})
+main({'type':'rectangle','length':4,'bredth':2})
 
-queue.dequeue()
-
-const obj2 = shape.createShapes({'type':'square','length':16})
-obj2.calculateArea()
-obj2.calculatePerimeter()
-queue.enqueue(obj2)
-
-const obj3 = shape.createShapes({'type':'rectangle','length':12,'bredth':11})
-obj3.calculateArea()
-obj3.calculatePerimeter()
-queue.enqueue(obj3)
-
-queue.dequeue()
-
-const obj4 = shape.createShapes({'type':'square','length':10})
-obj4.calculateArea()
-obj4.calculatePerimeter()
-queue.enqueue(obj4)
-queue.dequeue()
-
-const obj5 = shape.createShapes({'type':'rectangle','length':23,'bredth':21})
-obj5.calculateArea()
-obj5.calculatePerimeter()
-queue.enqueue(obj5)
-queue.dequeue()
-
-logger.logSuccess(queue)

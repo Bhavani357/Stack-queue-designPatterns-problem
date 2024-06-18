@@ -9,23 +9,15 @@ class Queue{
         this.perimeterSum = 0
     }
     enqueue(obj){
-        if(this.perimeterSum<100){
-            this.data.push(obj)
-            let perimeter = obj.params.perimeter
-            this.perimeterSum += perimeter
-        }else{
-            logger.logSuccess("Your perimeter reaches the limit, please dequeue it")
-        }
+        this.data.push(obj)
+        let perimeter = obj.params.perimeter
+        this.perimeterSum += perimeter
     }
     dequeue(){
-        while(this.perimeterSum >= 100){
-            let popedEl = this.data.shift()
-            let perim = popedEl.params.perimeter
-            this.perimeterSum -= perim
-            stack.push(popedEl)
-            logger.logSuccess(stack)
-            return popedEl
-        }
+        let popedEl = this.data.shift()
+        let perim = popedEl.params.perimeter
+        this.perimeterSum -= perim
+        return popedEl
     }
     printData(){
         return this.data
